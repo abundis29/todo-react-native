@@ -19,19 +19,20 @@ describe('todoSlice reducers', () => {
   it('should update an existing todo', () => {
     // Create an initial state with a todo to update
     state = {
-      todos: [{ id: '1', text: 'Existing Todo', isCompleted: false, createdAt: 'oldTime', updatedAt: 'oldTime' }],
+      todos: [{ id: '1', text: 'Existing Todo', isCompleted: false, createdAt: '2023-10-20T18:35:55.338Z', updatedAt: 'oldTime' }],
     };
-
+  
     const currentTime = new Date().toISOString();
     // Define the action to update the todo with id '1'
-    const action = updateTodo({ id: '1', text: 'Updated Todo', isCompleted: true, createdAt: currentTime, updatedAt: currentTime });
+    const action = updateTodo({ id: '1', text: 'Updated Todo', isCompleted: true, createdAt: "2023-10-20T18:35:55.338Z", updatedAt: currentTime });
     const newState = todoReducer(state, action);
-
+  
     // Verify that the todo with id '1' has been updated
     expect(newState.todos).toEqual([
-      { id: '1', text: 'Updated Todo', isCompleted: true, createdAt: currentTime, updatedAt: currentTime },
+      { id: '1', text: 'Updated Todo', isCompleted: true, createdAt: "2023-10-20T18:35:55.338Z", updatedAt: currentTime },
     ]);
   });
+  
 
   it('should not update a non-existing todo', () => {
     // Create an initial state without the todo to update
