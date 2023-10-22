@@ -42,7 +42,7 @@ export const getStyles = (colors) => {
             },
             todoTextCompleted: {
                 color: colors.text,
-                fontSize: 18,
+                fontSize: 17,
                 textDecorationLine: 'line-through',
             },
         }
