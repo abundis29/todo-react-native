@@ -1,15 +1,20 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
-import { persistReducer } from 'redux-persist';
-import { RootState } from '../store/store';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { combineReducers } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
+import todoSlice from "../reducers/todoSlice";
+
+export const rootReducer = combineReducers({
+    todos: todoSlice,
+    // If you need another reducer, you would add it like so
+});
 
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['todos'], // Specify which reducers to persist
+    whitelist: ['todos'],
     stateReconciler: autoMergeLevel2,
 };
 
-const persistedReducer = persistReducer(persistConfig, (state: RootState) => state);
+export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default persistedReducer;

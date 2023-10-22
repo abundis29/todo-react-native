@@ -56,6 +56,7 @@ const HomeScreen: React.FC = () => {
       {!isEditing ? <View style={styles.footer}>
         <TouchableOpacity
           style={styles.customButton}
+          testID='new-reminder'
           onPress={() => handleUpdateTodo({ shouldAddNewRow: true, todo: {} })}
         >
           <View style={styles.plusButton}>
