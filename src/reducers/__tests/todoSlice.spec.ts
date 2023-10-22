@@ -1,4 +1,4 @@
-import todoReducer, { addTodo, updateTodo, deleteTodo, initialState } from '../todoSlice';
+import todoReducer, { addTodo, updateTodo, deleteTodo, initialState, toggleTodo } from '../todoSlice';
 
 describe('todoSlice reducers', () => {
   let state;
@@ -33,7 +33,20 @@ describe('todoSlice reducers', () => {
     ]);
   });
   
-
+  it('should toggle the completion status of an existing todo', () => {
+    // Create an initial state with a todo to toggle
+    state = {
+      todos: [{ id: '1', text: 'Todo to Toggle', isCompleted: false, createdAt: 'oldTime', updatedAt: 'oldTime' }],
+    };
+  
+    // Define the action to toggle the completion status of the todo with id '1'
+    const action = toggleTodo('1');
+    const newState = todoReducer(state, action);
+  
+    // Verify that the completion status of the todo with id '1' has been toggled
+    expect(newState.todos[0].isCompleted).toBe(true);
+  });
+  
   it('should not update a non-existing todo', () => {
     // Create an initial state without the todo to update
     state = {

@@ -1,11 +1,6 @@
 import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-        backgroundColor: '#f5f5f5',
-        
-    },
+    container: { flex: 1, flexDirection: 'row', paddingLeft: 10, height: 40, alignItems: 'center' },
     title: {
         fontSize: 40,
         fontWeight: 'bold',
@@ -28,39 +23,12 @@ export const styles = StyleSheet.create({
         fontSize: 16,
     },
     todoItem: {
-        flex:1,
-        alignItems:'flex-start',
+        flex: 1,
+        alignItems: 'flex-start',
         borderBottomColor: '#ddd',
         borderBottomWidth: 1,
     },
-    checkboxContainer: {
-        width: 28,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-    },
-    checkbox: {
-        width: 20,
-        height: 20,
-        borderWidth: 1,
-        borderColor: 'grey',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-    },
-    checkedCheckbox: {
-        backgroundColor: '#4CAF50',
-    },
-    checkboxIcon: {
-        width: 18,
-        height: 18,
-        borderRadius: 9,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    checkboxText: {
-        color: '#4CAF50',
-    },
+
     todoText: {
         width: 300,
         flex: 1,

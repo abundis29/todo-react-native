@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import SwipeableRow from '../../components/Swipeable/Swipeable';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Todo } from '../../types/Todo';
 import { styles } from './TodoStyles';
+import { CheckBox } from '../CheckBox/CheckBox';
 
-const typingFinishedDelay = 1000; // throttle for user..
+const typingFinishedDelay = 1000;
 
 export interface Data {
   todo?: Todo
@@ -30,44 +31,33 @@ const TodoItem: React.FC<TodoItemProps> = ({
   const [updatedText, setUpdatedText] = useState(item.text);
   const [isTyping, setIsTyping] = useState(false);
 
+  const safeSendDataToParent = useCallback((data: Data) => {
+    if (sendDataToParent) {
+      sendDataToParent(data);
+    }
+  }, [sendDataToParent]);
+
   const handleCompleteTodo = useCallback(() => {
     if (item) {
       const updatedTodo: Todo = { ...item, isCompleted: !item.isCompleted };
-      if (sendDataToParent) {
-        sendDataToParent({
-          todo: updatedTodo,
-        });
-      }
+      safeSendDataToParent({ todo: updatedTodo });
     }
-  }, [item, sendDataToParent]);
+  }, [item, safeSendDataToParent]);
 
   const handleOnSubmitEditing = () => {
     if (updatedText.trim() !== '') {
       const updatedTodo: Todo = { ...item, text: updatedText };
-      if (sendDataToParent) {
-        sendDataToParent({
-          todo: updatedTodo,
-          shouldAddNewRow: true
-        });
-      }
+      safeSendDataToParent({ todo: updatedTodo, shouldAddNewRow: true });
     } else {
-      if (sendDataToParent && onDelete) {
-        sendDataToParent({
-          shouldDelete: true,
-          todo: item
-        });
+      if (onDelete) {
         onDelete({ id: item.id });
+        safeSendDataToParent({
+          shouldDelete: true,
+          todo: item,
+        });
       }
     }
     setIsTyping(false);
-  };
-
-
-  const handleBlur = (a) => {
-    // Handle blur event here
-    if (isTyping) {
-      const textValue = a.nativeEvent.text;
-    }
   };
 
   const handleTextChange = useCallback((text: string) => {
@@ -82,62 +72,43 @@ const TodoItem: React.FC<TodoItemProps> = ({
       clearTimeout(typingTimer);
       typingTimer = setTimeout(() => {
         setIsTyping(false);
-        if (sendDataToParent) {
-          const updatedTodo: Todo = { ...item, text: updatedText };
-          sendDataToParent({
-            todo: updatedTodo
-          });
-        }
+        const updatedTodo: Todo = { ...item, text: updatedText };
+        safeSendDataToParent({ todo: updatedTodo });
       }, typingFinishedDelay);
     }
 
     return () => clearTimeout(typingTimer);
-  }, [isTyping, updatedText, item, sendDataToParent]);
+  }, [isTyping, updatedText, item, safeSendDataToParent]);
 
-
-  // Rest of the code
+  const rightButtons = useMemo(
+    () => [
+      {
+        text: 'Delete',
+        backgroundColor: '#F44336',
+        onPress: () => onDelete && onDelete({ id: item.id }),
+      },
+    ],
+    [onDelete, item.id]
+  );
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, }}>
-      <SwipeableRow
-        key={item.id + 'SwipeableRow'}
-        rightButtons={[
-          {
-            text: 'Delete',
-            backgroundColor: '#F44336',
-            onPress: () => onDelete && onDelete({ id: item.id }),
-          },
-        ]}
-      >
-        <View style={{ flex: 1, flexDirection: 'row', paddingLeft: 10, height: 40, alignItems: 'center' }}>
-          <View style={styles.checkboxContainer}>
-            <TouchableOpacity
-              style={[styles.checkbox, item.isCompleted && styles.checkedCheckbox]}
-              onPress={handleCompleteTodo}
-            >
-              {item.isCompleted && (
-                <View style={styles.checkboxIcon}>
-                  <Text style={styles.checkboxText}>✓</Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          </View>
+      <SwipeableRow key={item.id} rightButtons={rightButtons}>
+        <View testID={`todo-item-${item.id}`} style={styles.container}>
+          <CheckBox itemId={item.id} isCompleted={item.isCompleted} onPress={handleCompleteTodo} />
           <View style={styles.todoItem}>
-
             <TextInput
+              testID={`todo-text-input-${item.id}`}
               style={[styles.todoText, item.isCompleted && styles.todoTextCompleted]}
               value={updatedText}
               onChangeText={handleTextChange}
-              onBlur={handleBlur}
-              editable={true}
-              autoFocus={true}
+              editable
+              autoFocus
               onSubmitEditing={handleOnSubmitEditing}
               {...props}
             />
           </View>
         </View>
       </SwipeableRow>
-    </GestureHandlerRootView>
   );
 };
 
