@@ -30,4 +30,5 @@ module.exports = {
         'no-console': 'off', // Allow console in certain environments
         // Add your custom rules or overrides here
     },
+    "ignorePatterns": ['scripts/setup.js'],
 }
