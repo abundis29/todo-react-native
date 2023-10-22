@@ -1,14 +1,17 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthenticationScreen from '../screens/AuthenticationScreen/AuthenticationScreen';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import { useColorScheme } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
+  const scheme = useColorScheme();
+  const theme = scheme === 'dark' ? DarkTheme : DefaultTheme
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <Stack.Navigator initialRouteName="Authentication">
         <Stack.Screen
           name="Lists"
@@ -24,10 +27,9 @@ export const Navigation = () => {
             headerBackTitle: "Lists", // Set the text for the back button
             headerShadowVisible: false,
             headerStyle: {
-              backgroundColor: 'white',
-            },
+              backgroundColor: theme.colors.background, // Use colors.card for the background color
+            }
           }}
-          
         />
       </Stack.Navigator>
     </NavigationContainer>

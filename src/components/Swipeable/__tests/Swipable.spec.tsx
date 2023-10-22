@@ -67,13 +67,12 @@ describe('SwipeableRow Component', () => {
         const { getByText } = component;
 
         const rightAction1 = getByText('Right Action 1');
-        const rightAction2 = getByText('Right Action 2');
 
         fireEvent.press(rightAction1);
 
 
         expect(rightButtons[0].onPress).toHaveBeenCalledTimes(1);
-    });
+        });
 
 
 

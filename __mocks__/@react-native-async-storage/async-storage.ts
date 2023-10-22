@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-jsdoc */
 const asMock = {
     __INTERNAL_MOCK_STORAGE__: {},

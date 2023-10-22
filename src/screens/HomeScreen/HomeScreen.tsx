@@ -4,12 +4,15 @@ import { addTodo, updateTodo, deleteTodo } from '../../reducers/todoSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 import TodoList from '../../components/TodoList/TodoList';
-import { styles } from './HomeScreenStyles';
+import { getStyles } from './HomeScreenStyles';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useTheme } from '@react-navigation/native';
 
 const HomeScreen: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
   const todos = useAppSelector((state) => state.todos.todos);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -45,7 +48,7 @@ const HomeScreen: React.FC = () => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'white'}}>
+    <View style={styles.container}>
       <TodoList
         title="Reminders" // TODO: Make dynamic with lists.
         todos={todos}

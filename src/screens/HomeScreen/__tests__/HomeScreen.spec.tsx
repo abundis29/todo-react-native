@@ -1,7 +1,7 @@
 import { render, fireEvent, act } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { addTodo, deleteTodo, updateTodo } from '../../../reducers/todoSlice';
+import { addTodo, deleteTodo } from '../../../reducers/todoSlice';
 import HomeScreen from '../HomeScreen';
 import * as hooks from '../../../hooks/useAppDispatch';
 
@@ -100,7 +100,7 @@ describe('HomeScreen', () => {
 
     const todoToDelete = { id: 'id1', text: 'testTodo' };
 
-    const { debug, getByText } = render(
+    const { getByText } = render(
       <Provider store={store}>
         <HomeScreen todos={[todoToDelete]} />
       </Provider>

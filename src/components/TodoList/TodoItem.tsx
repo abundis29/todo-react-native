@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput } from 'react-native';
 import SwipeableRow from '../../components/Swipeable/Swipeable';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Todo } from '../../types/Todo';
-import { styles } from './TodoStyles';
 import { CheckBox } from '../CheckBox/CheckBox';
+import { useTheme } from '@react-navigation/native';
+import { getStyles } from './TodoStyles';
 
 const typingFinishedDelay = 1000;
 
@@ -91,24 +91,27 @@ const TodoItem: React.FC<TodoItemProps> = ({
     [onDelete, item.id]
   );
 
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
+
   return (
-      <SwipeableRow key={item.id} rightButtons={rightButtons}>
-        <View testID={`todo-item-${item.id}`} style={styles.container}>
-          <CheckBox itemId={item.id} isCompleted={item.isCompleted} onPress={handleCompleteTodo} />
-          <View style={styles.todoItem}>
-            <TextInput
-              testID={`todo-text-input-${item.id}`}
-              style={[styles.todoText, item.isCompleted && styles.todoTextCompleted]}
-              value={updatedText}
-              onChangeText={handleTextChange}
-              editable
-              autoFocus
-              onSubmitEditing={handleOnSubmitEditing}
-              {...props}
-            />
-          </View>
+    <SwipeableRow key={item.id} rightButtons={rightButtons}>
+      <View testID={`todo-item-${item.id}`} style={styles.container}>
+        <CheckBox itemId={item.id} isCompleted={item.isCompleted} onPress={handleCompleteTodo} />
+        <View style={styles.todoItem}>
+          <TextInput
+            testID={`todo-text-input-${item.id}`}
+            style={[styles.todoText, item.isCompleted && styles.todoTextCompleted]}
+            value={updatedText}
+            onChangeText={handleTextChange}
+            editable
+            autoFocus
+            onSubmitEditing={handleOnSubmitEditing}
+            {...props}
+          />
         </View>
-      </SwipeableRow>
+      </View>
+    </SwipeableRow>
   );
 };
 

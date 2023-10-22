@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
-import { v4 as uuidv4 } from 'uuid';
 
 import { RectButton } from 'react-native-gesture-handler';
 
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import colors from '../../utils/colors';
 
 interface SwipeableButtonRow {
     text: string;
@@ -35,9 +35,9 @@ const SwipeableRow: React.FC<Props> = ({
             close();
         };
         return (
-            <Animated.View key={`leftAction-${index}`} style={{ flex: 1, transform: [{ translateX: trans }] }}>
+            <Animated.View key={`leftAction-${index}`} style={[styles.leftAction, { backgroundColor: button.backgroundColor, transform: [{ translateX: trans }] }]}>
                 <RectButton
-                    style={[styles.leftAction, { backgroundColor: button.backgroundColor }]}
+                    style={styles.actionButton}
                     onPress={pressHandler}>
                     <Text style={styles.actionText}>{button.text}</Text>
                 </RectButton>
@@ -45,26 +45,17 @@ const SwipeableRow: React.FC<Props> = ({
         );
     };
 
-    
-
-    const renderLeftActions = (progress, _dragAnimatedValue) => {
+    const renderLeftActions = (progress) => {
         if (leftButtons.length === 0) return null;
-      
+
         return (
-          <View
-            style={{
-              width: 192,
-              /* istanbul ignore next */
-              flexDirection: 'row'
-            }}
-          >
-            {leftButtons.map((button, index) =>
-              renderLeftAction(button, 192 - index * 64, progress, index) // Pass index as the key
-            )}
-          </View>
+            <View style={styles.leftActionsContainer}>
+                {leftButtons.map((button, index) =>
+                    renderLeftAction(button, 192 - index * 64, progress, index)
+                )}
+            </View>
         );
-      };
-      
+    };
 
     const renderRightAction = (button, x, progress, index) => {
         const trans = progress.interpolate({
@@ -77,9 +68,9 @@ const SwipeableRow: React.FC<Props> = ({
         };
 
         return (
-            <Animated.View key={`renderRight-${index}`} style={{ flex: 1, transform: [{ translateX: trans }] }}>
+            <Animated.View key={`rightAction-${index}`} style={[styles.rightAction, { backgroundColor: button.backgroundColor, transform: [{ translateX: trans }] }]}>
                 <RectButton
-                    style={[styles.rightAction, { backgroundColor: button.backgroundColor }]}
+                    style={styles.actionButton}
                     onPress={pressHandler}>
                     <Text style={styles.actionText}>{button.text}</Text>
                 </RectButton>
@@ -87,13 +78,8 @@ const SwipeableRow: React.FC<Props> = ({
         );
     };
 
-    const renderRightActions = (progress, _dragAnimatedValue) => (
-        <View
-            key={uuidv4()}
-            style={{
-                width: 192,
-                flexDirection: 'row',
-            }}>
+    const renderRightActions = (progress) => (
+        <View style={styles.rightActionsContainer}>
             {rightButtons.map((button, index) =>
                 renderRightAction(button, 192 - index * 64, progress, index)
             )}
@@ -106,9 +92,8 @@ const SwipeableRow: React.FC<Props> = ({
 
     return (
         <Swipeable
-
             ref={swipeableRow}
-            friction={2}
+            friction={3}
             enableTrackpadTwoFingerGesture
             leftThreshold={30}
             rightThreshold={40}
@@ -119,24 +104,36 @@ const SwipeableRow: React.FC<Props> = ({
     );
 };
 
-export default SwipeableRow;
-
 const styles = StyleSheet.create({
-    leftAction: {
+    actionButton: {
         flex: 1,
-        backgroundColor: '#497AFC',
         justifyContent: 'center',
-
     },
     actionText: {
-        color: 'white',
-        fontSize: 16,
-        backgroundColor: 'transparent',
-        padding: 10,
+        alignContent: 'center',
+        backgroundColor: colors.transparent,
+        color: colors.white,
+        fontSize: 17,
+        fontWeight: '400',
+        justifyContent: 'center',
+        padding: 5,
     },
-    rightAction: {
-        alignItems: 'center',
+    leftAction: {
         flex: 1,
         justifyContent: 'center',
     },
+    leftActionsContainer: {
+        flexDirection: 'row',
+        width: 192,
+    },
+    rightAction: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    rightActionsContainer: {
+        flexDirection: 'row',
+        width: 192,
+    },
 });
+
+export default SwipeableRow;

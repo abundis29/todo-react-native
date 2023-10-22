@@ -15,7 +15,7 @@ const mockItem: Todo = {
 
 describe('TodoItem Component', () => {
     it('renders the component with provided item text', () => {
-        const { getByTestId, getByText } = render(<TodoItem item={mockItem} />);
+        const { getByTestId } = render(<TodoItem item={mockItem} />);
 
         // Assert that the component is rendered with the correct text
         expect(getByTestId(`todo-item-${mockItem.id}`)).toBeTruthy();

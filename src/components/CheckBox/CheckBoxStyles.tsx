@@ -1,48 +1,62 @@
 import { StyleSheet } from 'react-native';
-export const styles = StyleSheet.create({
-    checkboxContainer: {
-        width: 28,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-    },
+
+export const getStyles = (colors) => {
+  return StyleSheet.create({
     checkbox: {
-        width: 20,
-        height: 20,
-        borderWidth: 1,
-        borderColor: 'grey',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
+      alignItems: 'center',
+      borderColor: colors.border,
+      borderRadius: 20,
+      borderWidth: 2,
+      height: 22,
+      justifyContent: 'center',
+      width: 22,
+      
     },
-    checkedCheckbox: {
-        backgroundColor: '#4CAF50',
+    checkboxContainer: {
+      
+      alignItems: 'flex-start',
+      // justifyContent: 'flex-start',
+      paddingBottom: 4,
+      paddingLeft: 8,
+      paddingRight: 8,
+      paddingTop: 4,
+    
+
+      
+      // width: 22,
+
     },
     checkboxIcon: {
-        width: 18,
-        height: 18,
-        borderRadius: 9,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colors.white, // Use theme colors,
+      borderRadius: 9,
+      height: 18,
+      justifyContent: 'center',
+      width: 18,
     },
     checkboxText: {
-        color: '#4CAF50',
+      color: colors.green, // Use theme colors
     },
-    todoText: {
-        width: 300,
-        flex: 1,
-        borderColor: 'red',
-        fontSize: 18,
-        color: '#333',
-    },
-    todoTextCompleted: {
-        fontSize: 18,
-        color: '#bbb',
-        textDecorationLine: 'line-through',
+    checkedCheckbox: {
+      backgroundColor: colors.primary, // Use theme colors
+      padding: 0,
     },
     footer: {
-        backgroundColor: '#f5f5f5',
-        padding: 10,
+      backgroundColor: colors.white, // Use theme colors
+      padding: 10,
     },
-});
+    todoText: {
+      borderColor: colors.border, // Use theme colors
+      color: colors.text, // Use theme colors
+      flex: 1,
+      fontSize: 18,
+      width: 300,
+    },
+    todoTextCompleted: {
+      color: colors.grey, // Use theme colors
+      fontSize: 18,
+      textDecorationLine: 'line-through',
+    },
+  });
+};
 

@@ -10,10 +10,11 @@
     "test": "jest --coverage=false --changedSince=origin/main",
     "testDebug": "jest -o --watch --coverage=false --detectOpenHandles",
     "setup": "node setup",
-    "validate": "npx expo-doctor && npm run test",
+    "validate": "npx expo-doctor && npm run lint && npm run test",
     "postinstall": "npm run validate",
     "testFinal": "jest",
-    "updateSnapshots": "jest -u --coverage=false"
+    "updateSnapshots": "jest -u --coverage=false",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.18.2",
@@ -37,6 +38,11 @@
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.6",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.52.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-native": "^4.1.0",
     "jest": "^29.7.0",
     "redux-mock-store": "^1.5.4"
   },

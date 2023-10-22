@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import useBiometricAuthentication from '../../hooks/useBiometricAuthentication';
+import colors from '../../utils/colors';
 
-const AuthenticationScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+const AuthenticationScreen: React.FC<{ navigation }> = ({ navigation }) => {
   const { success: isAuthenticated, error, loading } = useBiometricAuthentication(); 
 
   useEffect(()=>{
@@ -12,7 +13,7 @@ const AuthenticationScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
     }
   }, [isAuthenticated])
   return (
-    <View style={[styles.container]}>
+    <View style={styles.container}>
       {loading ? (
         <Text style={styles.loadingText}>Authenticating...</Text>
       ) : isAuthenticated ? (
@@ -32,18 +33,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  failureText: {
+    color: colors.error,
+    fontSize: 18,
+  },
   loadingText: {
+    color: colors.white,
     fontSize: 20,
-    color: '#333',
   },
   text: {
+    color: colors.white,
     fontSize: 24,
-    color: '#007AFF',
     fontWeight: 'bold',
-  },
-  failureText: {
-    fontSize: 18,
-    color: '#FF3B30',
   },
 });
 
