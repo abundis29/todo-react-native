@@ -24,7 +24,7 @@
     "@testing-library/react-native": "^12.3.0",
     "expo": "~49.0.13",
     "expo-local-authentication": "~13.4.1",
-    "expo-splash-screen": "~0.20.5",
+    "expo-splash-screen": "~0.22.0",
     "expo-status-bar": "~1.6.0",
     "jest-expo": "^49.0.0",
     "react": "18.2.0",
