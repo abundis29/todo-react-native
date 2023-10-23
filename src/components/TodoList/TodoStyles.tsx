@@ -1,6 +1,8 @@
+import { useTheme } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
-export const getStyles = (colors) => {
+export const getStyles = () => {
+    const { colors } = useTheme()
     return StyleSheet.create(
         {
             centeredView: {
@@ -18,7 +20,7 @@ export const getStyles = (colors) => {
                 padding: 10,
             },
             noItemsText: {
-                color: colors.background,
+                color: colors.border,
                 fontSize: 18,
             },
             todoItem: {
@@ -35,7 +37,6 @@ export const getStyles = (colors) => {
                 borderColor: colors.text,
                 color: colors.text,
                 flex: 1,
-                fontFamily: 'SF Pro Rounded',
                 fontSize: 17,
                 justifyContent: 'center',
                 width: 400,

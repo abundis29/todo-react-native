@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { getStyles } from './AutenticationScreenStyles';
-import { useTheme } from '@react-navigation/native';
 import useBiometrics from '../../hooks/useBiometrics';
 
 const AuthenticationScreen: React.FC<{ navigation }> = ({ navigation }) => {
   const { success: isAuthenticated, error, loading, handleBiometricsStatus } = useBiometrics(); // Import handleBiometricsStatus
 
-  const { colors } = useTheme();
-  const styles = getStyles(colors);
+
+  const styles = getStyles();
 
   return (
     <View style={styles.container}>

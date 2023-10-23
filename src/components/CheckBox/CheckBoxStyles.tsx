@@ -1,6 +1,8 @@
+import { useTheme } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
-export const getStyles = (colors) => {
+export const getStyles = () => {
+  const { colors } = useTheme()
   return StyleSheet.create({
     checkbox: {
       alignItems: 'center',
@@ -13,49 +15,26 @@ export const getStyles = (colors) => {
       
     },
     checkboxContainer: {
-      
       alignItems: 'flex-start',
-      // justifyContent: 'flex-start',
       paddingBottom: 4,
       paddingLeft: 8,
       paddingRight: 8,
       paddingTop: 4,
-    
-
-      
-      // width: 22,
-
     },
     checkboxIcon: {
       alignItems: 'center',
-      backgroundColor: colors.white, // Use theme colors,
+      backgroundColor: colors.primary,
       borderRadius: 9,
       height: 18,
       justifyContent: 'center',
       width: 18,
     },
     checkboxText: {
-      color: colors.green, // Use theme colors
+      color: colors.text,
     },
     checkedCheckbox: {
-      backgroundColor: colors.primary, // Use theme colors
+      backgroundColor: colors.primary,
       padding: 0,
-    },
-    footer: {
-      backgroundColor: colors.white, // Use theme colors
-      padding: 10,
-    },
-    todoText: {
-      borderColor: colors.border, // Use theme colors
-      color: colors.text, // Use theme colors
-      flex: 1,
-      fontSize: 18,
-      width: 300,
-    },
-    todoTextCompleted: {
-      color: colors.grey, // Use theme colors
-      fontSize: 18,
-      textDecorationLine: 'line-through',
     },
   });
 };

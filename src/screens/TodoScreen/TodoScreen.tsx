@@ -2,20 +2,18 @@
 
 import React, { useState } from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
-import { addTodo, updateTodo, deleteTodo } from '../../reducers/todoSlice';
 import { v4 as uuidv4 } from 'uuid';
+
+import { addTodo, updateTodo, deleteTodo } from '../../reducers/todoSlice';
 
 import TodoList from '../../components/TodoList/TodoList';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { Footer } from '../../components/Footer/Footer';
-import { useTheme } from '@react-navigation/native';
 import { getStyles } from './TodoScreenStyles';
 
 const TodoScreen: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { colors } = useTheme();
-  const styles = getStyles(colors);
   const todos = useAppSelector((state) => state.todos.todos);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -44,6 +42,7 @@ const TodoScreen: React.FC = () => {
       }
     }
   };
+  const styles = getStyles();
 
   return (
     <View style={styles.container}>
@@ -56,8 +55,8 @@ const TodoScreen: React.FC = () => {
       {!isEditing ? (
         <Footer>
           <TouchableOpacity
-            style={styles.customButton}
-            testID="new-reminder"
+            style={styles.plusButtonContainer}
+            testID="add-todo"
             onPress={() => handleUpdateTodo({ shouldAddNewRow: true, todo: {} })}
           >
             <View style={styles.plusButton}>

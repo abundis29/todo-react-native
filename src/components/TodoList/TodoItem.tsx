@@ -3,7 +3,6 @@ import { View, TextInput } from 'react-native';
 import SwipeableRow from '../../components/Swipeable/Swipeable';
 import { Todo } from '../../types/Todo';
 import { CheckBox } from '../CheckBox/CheckBox';
-import { useTheme } from '@react-navigation/native';
 import { getStyles } from './TodoStyles';
 
 const typingFinishedDelay = 1000;
@@ -95,8 +94,8 @@ const TodoItem: React.FC<TodoItemProps> = ({ item, onDelete, sendDataToParent, .
     },
   ];
 
-  const { colors } = useTheme();
-  const styles = getStyles(colors);
+
+  const styles = getStyles();
 
   return (
     <SwipeableRow key={item.id} rightButtons={rightButtons}>

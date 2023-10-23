@@ -65,7 +65,7 @@ describe('HomeScreen', () => {
       </Provider>
     );
 
-    fireEvent.press(getByTestId('new-reminder'));
+    fireEvent.press(getByTestId('add-todo'));
 
     expect(mockDispatch).toHaveBeenCalledWith(addTodo(expect.any(Object)))
   });

@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     },
     textWrapper: {
       color: '#0C79FE', // Use the desired color value
-      fontFamily: 'SF Pro Rounded-Bold', // Use the desired font family
       fontSize: 32,
       fontWeight: '700',
     },

@@ -1,8 +1,10 @@
 
 
+import { useTheme } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
-export const getStyles = (colors) => {
+export const getStyles = () => {
+    const { colors } = useTheme()
     return StyleSheet.create({
         container: {
             backgroundColor: colors.background,
@@ -14,7 +16,7 @@ export const getStyles = (colors) => {
             marginTop: 24,
         },
         dashboardItem: {
-            backgroundColor: colors.cardBackground,
+            backgroundColor: colors.background,
             borderRadius: 8,
             marginVertical: 8,
             padding: 16,
@@ -24,7 +26,7 @@ export const getStyles = (colors) => {
             fontSize: 20,
         },
         errorText: {
-            color: colors.error,
+            color: colors.notification,
             fontSize: 16,
             marginTop: 10,
         },
@@ -49,7 +51,7 @@ export const getStyles = (colors) => {
             fontWeight: 'bold',
         },
         loadingText: {
-            color: colors.white,
+            color: colors.text,
             fontSize: 20,
         },
         settingsButton: {

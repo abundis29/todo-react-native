@@ -1,7 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { getStyles } from "./CheckBoxStyles";
-import { useTheme } from "@react-navigation/native";
 
 
 type CheckBoxProps = {
@@ -11,8 +10,7 @@ type CheckBoxProps = {
 };
 
 export const CheckBox = React.memo(({ itemId, isCompleted, onPress }: CheckBoxProps) => {
-    const { colors } = useTheme();
-    const styles = getStyles(colors);
+    const styles = getStyles();
     return (
         <View testID={`checkbox-container-${itemId}`} style={styles.checkboxContainer}>
             <TouchableOpacity
@@ -26,5 +24,6 @@ export const CheckBox = React.memo(({ itemId, isCompleted, onPress }: CheckBoxPr
                     </View>
                 )}
             </TouchableOpacity>
-        </View>)
+        </View>
+    )
 });

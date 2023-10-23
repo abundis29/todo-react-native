@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, } from 'react-native';
 import TodoItem, { Data } from './TodoItem';
 import { Todo } from '../../types/Todo';
 import { getStyles } from './TodoStyles';
-import { useTheme } from '@react-navigation/native';
 import Label from '../Label/Label';
 import { KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
 
@@ -15,9 +14,7 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, title, onDelete, sendDataToParent, ...props }) => {
-  const { colors } = useTheme();
-  const styles = getStyles(colors);
-
+  const styles = getStyles();
   const renderTitle = title ? <Label title={title} /> : null;
 
   const renderNoItemsMessage = (

@@ -3,7 +3,6 @@ import { ActivityIndicator, Text, View } from 'react-native';
 import { styles } from './LoadingStyles';
 
 const Loading = () => {
-
   return (
     <View style={styles.loadingView}>
       <ActivityIndicator

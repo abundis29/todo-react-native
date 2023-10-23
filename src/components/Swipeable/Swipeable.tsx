@@ -1,10 +1,8 @@
 import React, { useRef } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
-
+import { Animated, Text, View } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import colors from '../../utils/colors';
+import { getStyles } from './SwipeableStyles';
 
 interface SwipeableButtonRow {
     text: string;
@@ -24,7 +22,7 @@ const SwipeableRow: React.FC<Props> = ({
     rightButtons = [],
 }) => {
     const swipeableRow = useRef<Swipeable | null>(null);
-
+    const styles = getStyles()
     const renderLeftAction = (button, x, progress, index) => {
         const trans = progress.interpolate({
             inputRange: [0, 1],
@@ -104,36 +102,5 @@ const SwipeableRow: React.FC<Props> = ({
     );
 };
 
-const styles = StyleSheet.create({
-    actionButton: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    actionText: {
-        alignContent: 'center',
-        backgroundColor: colors.transparent,
-        color: colors.white,
-        fontSize: 17,
-        fontWeight: '400',
-        justifyContent: 'center',
-        padding: 5,
-    },
-    leftAction: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    leftActionsContainer: {
-        flexDirection: 'row',
-        width: 192,
-    },
-    rightAction: {
-        flex: 1,
-        justifyContent: 'center',
-    },
-    rightActionsContainer: {
-        flexDirection: 'row',
-        width: 192,
-    },
-});
 
 export default SwipeableRow;
