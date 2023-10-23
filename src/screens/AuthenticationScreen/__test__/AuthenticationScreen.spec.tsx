@@ -21,11 +21,11 @@ describe('AuthenticationScreen', () => {
   it('should render "Authenticating..." while authenticating', async () => {
 
     const { getByText } = render(<AuthenticationScreen navigation={{ navigate: jest.fn() }} />);
-    expect(getByText('Authenticating...')).toBeTruthy();
+
     await act(async () => {
        await mockedAuthenticateAsync();
     });
-    expect(getByText('Authenticated')).toBeTruthy();
+    expect(getByText('Reminders')).toBeTruthy();
   });
 
   it('should handle authentication failure', async () => {

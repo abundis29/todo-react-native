@@ -1,51 +1,58 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import useBiometricAuthentication from '../../hooks/useBiometricAuthentication';
-import colors from '../../utils/colors';
+import React from 'react';
+import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { getStyles } from './AutenticationScreenStyles';
+import { useTheme } from '@react-navigation/native';
+import useBiometrics from '../../hooks/useBiometrics';
 
 const AuthenticationScreen: React.FC<{ navigation }> = ({ navigation }) => {
-  const { success: isAuthenticated, error, loading } = useBiometricAuthentication(); 
+  const { success: isAuthenticated, error, loading, handleBiometricsStatus } = useBiometrics(); // Import handleBiometricsStatus
 
-  useEffect(()=>{
-    if(isAuthenticated){
-      // TODO: update this temporal change later
-      navigation.navigate('TodoList')
-    }
-  }, [isAuthenticated])
+  const { colors } = useTheme();
+  const styles = getStyles(colors);
+
   return (
     <View style={styles.container}>
       {loading ? (
         <Text style={styles.loadingText}>Authenticating...</Text>
       ) : isAuthenticated ? (
         <>
-          <Text style={styles.text}>Authenticated</Text>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Lists</Text>
+            <TouchableOpacity
+              style={styles.settingsButton}
+              onPress={() => {
+                // Navigate to settings or open the settings menu
+              }}
+            >
+              <Text style={styles.settingsButtonText}>Settings</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.dashboard}>
+            {['Reminders', 'Todos'].map((listName, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.dashboardItem}
+                onPress={() => {
+                  navigation.navigate('TodoScreen', { listName }); // Pass listName as a param
+                }}
+              >
+                <Text style={styles.dashboardItemText}>{listName}</Text>
+              </TouchableOpacity>
+            ))}
+            {/* Add more dashboard items as needed */}
+          </View>
         </>
       ) : (
-        <Text style={styles.failureText}>Authentication failed. Please try again.</Text>
+        <View style={styles.failureContainer}>
+          <Text style={styles.failureText}>Authentication failed. Please try again.</Text>
+          <Button title="Try Again" onPress={handleBiometricsStatus} /> 
+        </View>
       )}
 
-      {error && <Text>Error: {error.message}</Text>}
+      {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  failureText: {
-    color: colors.error,
-    fontSize: 18,
-  },
-  loadingText: {
-    color: colors.white,
-    fontSize: 20,
-  },
-  text: {
-    color: colors.white,
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-});
 
 export default AuthenticationScreen;

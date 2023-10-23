@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthenticationScreen from '../screens/AuthenticationScreen/AuthenticationScreen';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import { useColorScheme } from 'react-native';
+import TodoScreen from '../screens/TodoScreen/TodoScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,8 +19,8 @@ export const Navigation = () => {
           options={{ headerShown: false, title: 'Lists' }}
         />
         <Stack.Screen
-          name="TodoList"
-          component={HomeScreen}
+          name="TodoScreen"
+          component={TodoScreen}
           options={{
             headerShown: true,
             headerTitle: '', // Set the title of the header

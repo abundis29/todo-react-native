@@ -6,6 +6,22 @@ const useBiometricAuthentication = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const handleBiometricsStatus = async () => {
+    try {
+      const hasHardwareAsyncResult = await LocalAuthentication.hasHardwareAsync();
+      await LocalAuthentication.supportedAuthenticationTypesAsync();
+
+      if (hasHardwareAsyncResult) {
+        authenticateWithBiometrics();
+      } else {
+        setError(new Error('Biometric hardware not found.'));
+        setLoading(false);
+      }
+    } catch (e) {
+      setError(e);
+      setLoading(false);
+    }
+  };
   const authenticateWithBiometrics = async () => {
     try {
       const hasBiometrics = await LocalAuthentication.hasHardwareAsync();
@@ -29,7 +45,7 @@ const useBiometricAuthentication = () => {
     authenticateWithBiometrics();
   }, []);
 
-  return { success, error, loading };
+  return { success, error, loading, handleBiometricsStatus };
 };
 
 export default useBiometricAuthentication;

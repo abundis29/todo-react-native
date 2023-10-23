@@ -5,7 +5,7 @@ import { Navigation } from '../Navigation';
 describe('Navigation Component', () => {
   it('renders the Authentication screen', () => {
     const { getByText } = render(<Navigation />);
-    
+
     // Assert that the "Authentication" screen title is present
     expect(getByText('Authenticating...')).toBeTruthy();
   });
