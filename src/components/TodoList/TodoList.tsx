@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text } from 'react-native';
 import TodoItem, { Data } from './TodoItem';
 import { Todo } from '../../types/Todo';
-import { getStyles } from './TodoStyles'
+import { getStyles } from './TodoStyles';
 import { useTheme } from '@react-navigation/native';
 import Label from '../Label/Label';
+import { KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
 
 interface TodoListProps {
   todos: Todo[];
@@ -17,30 +18,32 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, onDelete, sendDataToP
   const { colors } = useTheme();
   const styles = getStyles(colors);
 
-  const renderTitle = title ? <Label title={title}/> : null;
+  const renderTitle = title ? <Label title={title} /> : null;
 
   const renderNoItemsMessage = (
     <View style={styles.centeredView}>
       <Text style={styles.noItemsText}>No {title.toLocaleLowerCase()}</Text>
     </View>
   );
+
   const renderTodoList = (
-    <FlatList
-      data={todos}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <TodoItem
-          item={item}
-          onDelete={onDelete}
-          sendDataToParent={sendDataToParent}
-          {...props}
-        />
-      )}
-      initialNumToRender={10}
-      maxToRenderPerBatch={5}
-      windowSize={5}
-      removeClippedSubviews={true}
-    />
+      <KeyboardAwareFlatList
+        data={todos}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TodoItem
+            item={item}
+            onDelete={onDelete}
+            sendDataToParent={sendDataToParent}
+            {...props}
+          />
+        )}
+        initialNumToRender={10}
+        maxToRenderPerBatch={5}
+        windowSize={5}
+        removeClippedSubviews={true}
+      />
+
   );
 
   return (

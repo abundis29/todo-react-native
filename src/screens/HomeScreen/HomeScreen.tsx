@@ -1,13 +1,16 @@
+// HomeScreen.tsx
+
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 import { addTodo, updateTodo, deleteTodo } from '../../reducers/todoSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 import TodoList from '../../components/TodoList/TodoList';
-import { getStyles } from './HomeScreenStyles';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { Footer } from '../../components/Footer/Footer';
 import { useTheme } from '@react-navigation/native';
+import { getStyles } from './HomeScreenStyles';
 
 const HomeScreen: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,30 +20,25 @@ const HomeScreen: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleUpdateTodo = (data) => {
-    setIsEditing(true)
+    setIsEditing(true);
     const { shouldDelete, todo, shouldAddNewRow } = data;
-
     if (shouldDelete) {
-      // If todo needs to be deleted
       dispatch(deleteTodo(todo.id));
-      setIsEditing(false)
+      setIsEditing(false);
     } else {
       const updatedTodo = todos.find((t) => t.id === todo.id);
-
       if (updatedTodo) {
-        // Update current todo if found
         dispatch(updateTodo({ ...todo }));
-        setIsEditing(false)
+        setIsEditing(false);
       }
       if (shouldAddNewRow) {
-        const currentTime = new Date().toISOString();
         dispatch(
           addTodo({
             id: uuidv4(),
             text: '',
             isCompleted: false,
-            createdAt: currentTime,
-            updatedAt: currentTime,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
           })
         );
       }
@@ -50,25 +48,27 @@ const HomeScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <TodoList
-        title="Reminders" // TODO: Make dynamic with lists.
+        title="Reminders"
         todos={todos}
         onDelete={(todo) => dispatch(deleteTodo(todo.id))}
         sendDataToParent={handleUpdateTodo}
       />
-
-      {!isEditing ? <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.customButton}
-          testID='new-reminder'
-          onPress={() => handleUpdateTodo({ shouldAddNewRow: true, todo: {} })}
-        >
-          <View style={styles.plusButton}>
-            <Text style={styles.plusButtonText}>+</Text>
-          </View>
-          <Text style={styles.addButtonText}>New Reminder</Text>
-        </TouchableOpacity>
-      </View> : null}
+      {!isEditing ? (
+        <Footer>
+          <TouchableOpacity
+            style={styles.customButton}
+            testID="new-reminder"
+            onPress={() => handleUpdateTodo({ shouldAddNewRow: true, todo: {} })}
+          >
+            <View style={styles.plusButton}>
+              <Text style={styles.plusButtonText}>+</Text>
+            </View>
+            <Text style={styles.addButtonText}>New Reminder</Text>
+          </TouchableOpacity>
+        </Footer>
+      ) : null}
     </View>
+
   );
 };
 

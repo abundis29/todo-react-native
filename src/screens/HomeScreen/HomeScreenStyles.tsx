@@ -4,11 +4,12 @@ import { StyleSheet } from 'react-native';
 
 export const getStyles = (colors) => {
   return StyleSheet.create({
+   
     addButton: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         backgroundColor: colors.primary,
         borderRadius: 4,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         marginBottom: 30,
         padding: 10,
     },
@@ -23,9 +24,8 @@ export const getStyles = (colors) => {
         flex: 1,
     },
     customButton: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
         backgroundColor: colors,
-        // borderColor: colors.primary,
         flexDirection: 'row',
         gap: 10,
         justifyContent: 'flex-start',
