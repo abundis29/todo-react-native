@@ -93,8 +93,7 @@ todoApp/
 - Comprehensive comments and documentation explain complex logic, authentication flow, state management, and styling.
 - Code maintains a balance between simplicity and structure for ease of review and maintenance.
 
-### User Stories
-[User Stories](documentation/todo.md)
+
 
 ## Project Setup
 
@@ -123,9 +122,13 @@ npm run setup
 
 ### Task Description & Approach
 
+
+
 #### Create the Application Structure
 
 - Establish a bare React Native project with a well-structured directory, including components, screens, navigation, utilities, and tests.
+
+[User Stories](documentation/todo.md)
 
 #### Expo Local Authentication Implementation
 
