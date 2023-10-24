@@ -3,7 +3,6 @@ import { render, fireEvent } from '@testing-library/react-native';
 import TodoItem from '../TodoItem';
 import { Todo } from '../../../types/Todo';
 
-// Mock data for testing
 const mockItem: Todo = {
     id: "1",
     text: 'Test Task',

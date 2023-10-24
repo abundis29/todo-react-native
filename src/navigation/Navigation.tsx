@@ -23,11 +23,11 @@ export const Navigation = () => {
           component={TodoScreen}
           options={{
             headerShown: true,
-            headerTitle: '', // Set the title of the header
-            headerBackTitle: "Lists", // Set the text for the back button
+            headerTitle: '',
+            headerBackTitle: "Lists",
             headerShadowVisible: false,
             headerStyle: {
-              backgroundColor: theme.colors.background, // Use colors.card for the background color
+              backgroundColor: theme.colors.background,
             }
           }}
         />

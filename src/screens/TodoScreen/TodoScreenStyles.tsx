@@ -44,7 +44,6 @@ export const getStyles = () => {
             borderRadius: 20,
             height: 25,
             justifyContent: 'center',
-            padding: 1,
             textAlign: 'center',
             width: 25
         },
@@ -60,9 +59,10 @@ export const getStyles = () => {
         // eslint-disable-next-line react-native/no-color-literals
         plusButtonText: {
             alignContent: 'center',
-            color: 'white', // always white
+            color: 'white', 
+            fontSize: 18,
             justifyContent: 'center',
-          
+           
         },
         
     });

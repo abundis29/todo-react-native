@@ -77,7 +77,6 @@ describe('SwipeableRow Component', () => {
 
 
     it('handles empty buttons', () => {
-        // Render SwipeableRow with empty leftButtons and rightButtons
         const emptyComponent = render(
             <SwipeableRow leftButtons={[]} rightButtons={[]}>
                 <Text>Swipeable Content</Text>
@@ -86,10 +85,10 @@ describe('SwipeableRow Component', () => {
 
         const { getByText } = emptyComponent;
 
-        // Verify that the content renders without errors
+
         expect(getByText('Swipeable Content')).toBeDefined();
 
-        // Clean up
+
         emptyComponent.unmount();
     });
 });

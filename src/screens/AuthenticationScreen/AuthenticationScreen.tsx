@@ -23,17 +23,18 @@ const AuthenticationScreen: React.FC<{ navigation }> = ({ navigation }) => {
                 // Navigate to settings or open the settings menu
               }}
             >
-              <Text style={styles.settingsButtonText}>Settings</Text>
+
             </TouchableOpacity>
           </View>
 
           <View style={styles.dashboard}>
-            {['Reminders', 'Todos'].map((listName, index) => (
+            {/* {TODO: CRUD LISTS OUTOF SCOPE} */}
+            {['Reminders'].map((listName, index) => (
               <TouchableOpacity
                 key={index}
                 style={styles.dashboardItem}
                 onPress={() => {
-                  navigation.navigate('TodoScreen', { listName }); // Pass listName as a param
+                  navigation.navigate('TodoScreen', { listName });
                 }}
               >
                 <Text style={styles.dashboardItemText}>{listName}</Text>

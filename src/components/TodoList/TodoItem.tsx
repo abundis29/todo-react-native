@@ -5,7 +5,7 @@ import { Todo } from '../../types/Todo';
 import { CheckBox } from '../CheckBox/CheckBox';
 import { getStyles } from './TodoStyles';
 
-const typingFinishedDelay = 1000;
+const typingFinishedDelay = 100;
 
 export interface Data {
   todo?: Todo;
@@ -100,22 +100,22 @@ const TodoItem: React.FC<TodoItemProps> = ({ item, onDelete, sendDataToParent, .
   return (
     <SwipeableRow key={item.id} rightButtons={rightButtons}>
 
-        <View testID={`todo-item-${item.id}`} style={styles.container}>
-          <CheckBox itemId={item.id} isCompleted={item.isCompleted} onPress={handleCompleteTodo} />
-          <View style={styles.todoItem}>
-            <TextInput
-              testID={`todo-text-input-${item.id}`}
-              style={[styles.todoText, item.isCompleted && styles.todoTextCompleted]}
-              value={updatedText}
-              onChangeText={handleTextChange}
-              onBlur={handleBlur}
-              editable
-              autoFocus
-              onSubmitEditing={handleOnSubmitEditing}
-              {...props}
-            />
-          </View>
+      <View testID={`todo-item-${item.id}`} style={styles.container}>
+        <CheckBox itemId={item.id} isCompleted={item.isCompleted} onPress={handleCompleteTodo} />
+        <View style={styles.todoItem}>
+          <TextInput
+            testID={`todo-text-input-${item.id}`}
+            style={[styles.todoText, item.isCompleted && styles.todoTextCompleted]}
+            value={updatedText}
+            onChangeText={handleTextChange}
+            onBlur={handleBlur}
+            editable
+            autoFocus
+            onSubmitEditing={handleOnSubmitEditing}
+            {...props}
+          />
         </View>
+      </View>
     </SwipeableRow>
   );
 };

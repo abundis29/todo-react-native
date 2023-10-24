@@ -36,7 +36,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, title, onDelete, sendDataToP
           />
         )}
         initialNumToRender={10}
-        maxToRenderPerBatch={5}
+        maxToRenderPerBatch={5} // Virtual Scrolling
         windowSize={5}
         removeClippedSubviews={true}
       />

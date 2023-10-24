@@ -5,7 +5,6 @@ import { addTodo, deleteTodo } from '../../../reducers/todoSlice';
 import TodoScreen from '../TodoScreen';
 import * as hooks from '../../../hooks/useAppDispatch';
 
-// Mock react-native-keyboard-aware-scroll-view
 jest.mock('react-native-keyboard-aware-scroll-view', () => {
   const KeyboardAwareFlatList = ({ ...props }) => {
     if (props.data && props.renderItem) {
