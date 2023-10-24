@@ -25,5 +25,5 @@ module.exports = {
         'react-native/split-platform-components': 'error',
         'no-console': 'off', 
     },
-    "ignorePatterns": ['scripts/setup.js'],
+    "ignorePatterns": ['scripts/setup.js', 'scripts/pre-commit.js'],
 }
