@@ -6,7 +6,8 @@
 This project demonstrates the candidate's abilities in various aspects, including code quality, UI/UX, familiarity with Expo and its modules, third-party integrations, and problem-solving. The project requirements align with the coding test's objectives:
 
 ## DEMO and how to use the app. 
-![Alt text](<2023-10-24 at 21.17.23 - Pink Jay.gif>)
+![2023-10-24 at 21 17 23 - Pink Jay](https://github.com/abundis29/todo-react-native/assets/26385676/32d87009-56ee-4891-9995-fe99056d99cc)
+
 
 
 ### Why
