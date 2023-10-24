@@ -7,7 +7,7 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "test": "jest --coverage=false --changedSince=origin/main",
+    "test": "jest --all --coverage=false --changedSince=origin/main",
     "testDebug": "jest -o --watch --coverage=false --detectOpenHandles",
     "setup": "node setup",
     "validate": "npx expo-doctor && npm run lint && npm run test",
