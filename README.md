@@ -64,6 +64,7 @@ todoApp/
 - Expo modules enhance the user experience.
 - A `TodoList.tsx` component efficiently manages tasks with an intuitive interface.
 - Expo's `List` component is employed for a polished UI.
+- UI is inspired in the Iphone Reminders App. 
 
 ### State Management
 
@@ -103,7 +104,7 @@ todoApp/
 
 ## Installation 🛠
 
-[![CI](https://github.com/abundis29/todo-react-native/actions/workflows/node.js.yml/badge.svg)](https://github.com/abundis29/todo-react-native/actions/workflows/node.js.yml)
+[![CI](https://github.com/abundis29/todo-react-native/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/abundis29/todo-react-native/actions/workflows/node.js.yml)
 
 Before you begin, ensure you have the following dependencies:
 
@@ -152,4 +153,13 @@ In the project directory, you can utilize the following scripts:
 - `testFinal`: Run Jest tests without any specific flags.
 - `updateSnapshots`: Update Jest snapshots without coverage reports.
 - `lint`: Run ESLint to check your code for code quality and adherence to coding standards.
+
+### Extras
+- Husky to prevent errors when installing new libraries or failing tests
+- Github actions , helps os to keep up to date with compatible libraries, if not compatible build is going to fail https://github.com/abundis29/todo-react-native/pulls
+
+
+### Trubleshooting 💔
+- I haven't tested it on android since i'dont have space on my mac to install ADB, also i dont own an android phone.
+- Auth Screen has hardcoded the Reminder Lists since is out of scope, but i'll update if needed. 
 
