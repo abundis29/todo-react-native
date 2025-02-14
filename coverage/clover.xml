@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739550947907" clover="3.2.0">
-  <project timestamp="1739550947908" name="All files">
+<coverage generated="1739550998908" clover="3.2.0">
+  <project timestamp="1739550998908" name="All files">
     <metrics statements="185" coveredstatements="169" conditionals="62" coveredconditionals="42" methods="59" coveredmethods="53" elements="306" coveredelements="264" complexity="0" loc="185" ncloc="185" packages="15" files="29" classes="29"/>
     <package name="flama">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
